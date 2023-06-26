@@ -27,36 +27,36 @@ struct ContentView: View {
                 // buttons
                 VStack(spacing: 12.0) {
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "AC", colour: Color.gray, scale: 1)
-                        ButtonView(text: "+/-", colour: Color.gray, scale: 1)
-                        ButtonView(text: "%", colour: Color.gray, scale: 1)
+                        ButtonView(text: "AC", colour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), scale: 1)
+                        ButtonView(text: "+/-", colour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), scale: 1)
+                        ButtonView(text: "%", colour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), scale: 1)
                         ButtonView(text: "/", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "7", colour: Color.gray, scale: 1)
-                        ButtonView(text: "8", colour: Color.gray, scale: 1)
-                        ButtonView(text: "9", colour: Color.gray, scale: 1)
+                        ButtonView(text: "7", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
+                        ButtonView(text: "8", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
+                        ButtonView(text: "9", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
                         ButtonView(text: "x", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "4", colour: Color.gray, scale: 1)
-                        ButtonView(text: "5", colour: Color.gray, scale: 1)
-                        ButtonView(text: "6", colour: Color.gray, scale: 1)
+                        ButtonView(text: "4", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
+                        ButtonView(text: "5", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
+                        ButtonView(text: "6", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
                         ButtonView(text: "-", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "1", colour: Color.gray, scale: 1)
-                        ButtonView(text: "2", colour: Color.gray, scale: 1)
-                        ButtonView(text: "3", colour: Color.gray, scale: 1)
+                        ButtonView(text: "1", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
+                        ButtonView(text: "2", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
+                        ButtonView(text: "3", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
                         ButtonView(text: "+", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "0", colour: Color.gray, scale: 2)
-                        ButtonView(text: ".", colour: Color.gray, scale: 1)
+                        ButtonView(text: "0", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 2)
+                        ButtonView(text: ".", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
                         ButtonView(text: "=", colour: Color.orange, scale: 1)
                     }
                 }
