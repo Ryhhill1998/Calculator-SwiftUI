@@ -27,37 +27,37 @@ struct ContentView: View {
                 // buttons
                 VStack(spacing: 12.0) {
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "AC", colour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), scale: 1)
-                        ButtonView(text: "+/-", colour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), scale: 1)
-                        ButtonView(text: "%", colour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), scale: 1)
-                        ButtonView(text: "/", colour: Color.orange, scale: 1)
+                        ButtonView(text: "AC", backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
+                        ButtonView(text: "+/-", backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
+                        ButtonView(text: "%", backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
+                        ButtonView(text: "/", backgroundColour: Color.orange)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "7", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "8", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "9", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "x", colour: Color.orange, scale: 1)
+                        ButtonView(text: "7", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "8", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "9", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "x", backgroundColour: Color.orange)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "4", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "5", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "6", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "-", colour: Color.orange, scale: 1)
+                        ButtonView(text: "4", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "5", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "6", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "-", backgroundColour: Color.orange)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "1", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "2", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "3", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "+", colour: Color.orange, scale: 1)
+                        ButtonView(text: "1", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "2", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "3", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "+", backgroundColour: Color.orange)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "0", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 2)
-                        ButtonView(text: ".", colour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 1)
-                        ButtonView(text: "=", colour: Color.orange, scale: 1)
+                        ButtonView(text: "0", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 2)
+                        ButtonView(text: ".", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+                        ButtonView(text: "=", backgroundColour: Color.orange)
                     }
                 }
             }
@@ -75,8 +75,9 @@ struct ContentView_Previews: PreviewProvider {
 struct ButtonView: View {
     
     let text: String
-    let colour: Color
-    let scale: CGFloat
+    let backgroundColour: Color
+    var scale: CGFloat = 1.0
+    var foregroundColour: Color = Color.white
     
     var width: CGFloat {
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
@@ -99,8 +100,8 @@ struct ButtonView: View {
         }
         .font(.system(size: 30))
         .frame(width: scaledWidth, height: width)
-        .background(colour)
-        .foregroundColor(.white)
+        .background(backgroundColour)
+        .foregroundColor(foregroundColour)
         .cornerRadius(scaledWidth / 2)
     }
 }
