@@ -12,55 +12,56 @@ struct ContentView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 30.0) {
+                Spacer()
+                
                 // output display
                 HStack {
                     Spacer()
                     
                     Text("0")
-                        .bold()
-                        .font(.system(size: 60))
+                        .font(.system(size: 80))
                         .foregroundColor(.white)
-                }.padding(.all)
+                }.padding(.horizontal, 30.0)
                 
                 // buttons
-                VStack {
+                VStack(spacing: 12.0) {
                     HStack(spacing: 12.0) {
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
+                        ButtonView(text: "AC", colour: Color.gray, scale: 1)
+                        ButtonView(text: "+/-", colour: Color.gray, scale: 1)
+                        ButtonView(text: "%", colour: Color.gray, scale: 1)
+                        ButtonView(text: "/", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
+                        ButtonView(text: "7", colour: Color.gray, scale: 1)
+                        ButtonView(text: "8", colour: Color.gray, scale: 1)
+                        ButtonView(text: "9", colour: Color.gray, scale: 1)
+                        ButtonView(text: "x", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
+                        ButtonView(text: "4", colour: Color.gray, scale: 1)
+                        ButtonView(text: "5", colour: Color.gray, scale: 1)
+                        ButtonView(text: "6", colour: Color.gray, scale: 1)
+                        ButtonView(text: "-", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
+                        ButtonView(text: "1", colour: Color.gray, scale: 1)
+                        ButtonView(text: "2", colour: Color.gray, scale: 1)
+                        ButtonView(text: "3", colour: Color.gray, scale: 1)
+                        ButtonView(text: "+", colour: Color.orange, scale: 1)
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
-                        ButtonView()
+                        ButtonView(text: "0", colour: Color.gray, scale: 2)
+                        ButtonView(text: ".", colour: Color.gray, scale: 1)
+                        ButtonView(text: "=", colour: Color.orange, scale: 1)
                     }
                 }
             }
+            .padding(.vertical, 12.0)
         }
     }
 }
@@ -73,20 +74,33 @@ struct ContentView_Previews: PreviewProvider {
 
 struct ButtonView: View {
     
+    let text: String
+    let colour: Color
+    let scale: CGFloat
+    
     var width: CGFloat {
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
     }
     
     var body: some View {
+        let scaledWidth = scale * width
+        
         Button {
             print("Button clicked")
         } label: {
-            Text("AC")
+            if scale == 2 {
+                HStack {
+                    Text(text)
+                    Spacer()
+                }.padding(.leading, 30.0)
+            } else {
+                Text(text)
+            }
         }
         .font(.system(size: 30))
-        .frame(width: width, height: width)
-        .background(Color.orange)
+        .frame(width: scaledWidth, height: width)
+        .background(colour)
         .foregroundColor(.white)
-        .cornerRadius(width / 2)
+        .cornerRadius(scaledWidth / 2)
     }
 }
