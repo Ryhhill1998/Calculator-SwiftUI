@@ -25,35 +25,35 @@ struct ContentView: View {
                 
                 // buttons
                 VStack {
-                    HStack {
+                    HStack(spacing: 12.0) {
                         ButtonView()
                         ButtonView()
                         ButtonView()
                         ButtonView()
                     }
                     
-                    HStack {
+                    HStack(spacing: 12.0) {
                         ButtonView()
                         ButtonView()
                         ButtonView()
                         ButtonView()
                     }
                     
-                    HStack {
+                    HStack(spacing: 12.0) {
                         ButtonView()
                         ButtonView()
                         ButtonView()
                         ButtonView()
                     }
                     
-                    HStack {
+                    HStack(spacing: 12.0) {
                         ButtonView()
                         ButtonView()
                         ButtonView()
                         ButtonView()
                     }
                     
-                    HStack {
+                    HStack(spacing: 12.0) {
                         ButtonView()
                         ButtonView()
                         ButtonView()
@@ -71,9 +71,12 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-
 struct ButtonView: View {
+    
+    var width: CGFloat {
+        return (UIScreen.main.bounds.width - (5 * 12)) / 4
+    }
+    
     var body: some View {
         Button {
             print("Button clicked")
@@ -81,9 +84,9 @@ struct ButtonView: View {
             Text("AC")
         }
         .font(.system(size: 30))
-        .frame(width: 70.0, height: 70.0)
+        .frame(width: width, height: width)
         .background(Color.orange)
         .foregroundColor(.white)
-        .cornerRadius(35)
+        .cornerRadius(width / 2)
     }
 }
