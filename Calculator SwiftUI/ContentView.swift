@@ -27,37 +27,38 @@ struct ContentView: View {
                 // buttons
                 VStack(spacing: 12.0) {
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "AC", backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
-                        ButtonView(text: "+/-", backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
-                        ButtonView(text: "%", backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
-                        ButtonView(text: "/", backgroundColour: Color.orange)
+                        SpecialButtonView(text: "AC")
+                        SpecialButtonView(text: "+/-")
+                        SpecialButtonView(text: "%")
+                        OperationButtonView(text: "/")
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "7", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "8", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "9", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "x", backgroundColour: Color.orange)
+                        NumberButtonView(value: 7)
+                        NumberButtonView(value: 8)
+                        NumberButtonView(value: 9)
+                        OperationButtonView(text: "x")
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "4", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "5", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "6", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "-", backgroundColour: Color.orange)
+                        NumberButtonView(value: 4)
+                        NumberButtonView(value: 5)
+                        NumberButtonView(value: 6)
+                        OperationButtonView(text: "-")
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "1", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "2", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "3", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "+", backgroundColour: Color.orange)
+                        NumberButtonView(value: 1)
+                        NumberButtonView(value: 2)
+                        NumberButtonView(value: 3)
+                        OperationButtonView(text: "+")
                     }
                     
                     HStack(spacing: 12.0) {
-                        ButtonView(text: "0", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: 2)
-                        ButtonView(text: ".", backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
-                        ButtonView(text: "=", backgroundColour: Color.orange)
+                        NumberButtonView(value: 0)
+                        NumberButtonView(value: 0)
+                        NumberButtonView(value: 0)
+                        OperationButtonView(text: "=")
                     }
                 }
             }
@@ -65,6 +66,8 @@ struct ContentView: View {
         }
     }
 }
+
+let buttonWidth = (UIScreen.main.bounds.width - (5 * 12)) / 4
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -84,7 +87,7 @@ struct ButtonView: View {
     }
     
     var body: some View {
-        let scaledWidth = scale * width
+        let scaledWidth = scale * width + (scale - 1) * 12
         
         Button {
             print("Button clicked")
@@ -103,5 +106,59 @@ struct ButtonView: View {
         .background(backgroundColour)
         .foregroundColor(foregroundColour)
         .cornerRadius(scaledWidth / 2)
+    }
+}
+
+struct OperationButtonView: View {
+    
+    let text: String
+    
+    var body: some View {
+        Button {
+            print("Button clicked")
+        } label: {
+            Text(text)
+        }
+        .font(.system(size: 30))
+        .frame(width: buttonWidth, height: buttonWidth)
+        .background(Color.orange)
+        .foregroundColor(.white)
+        .cornerRadius(buttonWidth / 2)
+    }
+}
+
+struct NumberButtonView: View {
+    
+    let value: Int
+    
+    var body: some View {
+        Button {
+            print("Button clicked")
+        } label: {
+            Text("\(value)")
+        }
+        .font(.system(size: 30))
+        .frame(width: buttonWidth, height: buttonWidth)
+        .background(Color(hue: 1.0, saturation: 0.003, brightness: 0.256))
+        .foregroundColor(.white)
+        .cornerRadius(buttonWidth / 2)
+    }
+}
+
+struct SpecialButtonView: View {
+    
+    let text: String
+    
+    var body: some View {
+        Button {
+            print("Button clicked")
+        } label: {
+            Text(text)
+        }
+        .font(.system(size: 30))
+        .frame(width: buttonWidth, height: buttonWidth)
+        .background(Color(hue: 0.0, saturation: 0.011, brightness: 0.732))
+        .foregroundColor(.black)
+        .cornerRadius(buttonWidth / 2)
     }
 }
