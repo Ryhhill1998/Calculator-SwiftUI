@@ -45,7 +45,7 @@ struct ButtonView: View {
         } label: {
             Text(text)
                 .frame(width: scaledWidth, height: buttonWidth)
-                .font(.system(size: 30))
+                .font(.system(size: 35))
                 .fontWeight(.semibold)
                 .background(backgroundColour)
                 .foregroundColor(foregroundColour)
@@ -60,11 +60,11 @@ struct OperationButtonView: View {
     let selected: Bool
     
     var bgColour: Color {
-        return selected ? Color.white : Color.orange
+        return selected ? Color.white : Color(red: 0, green: 0.573, blue: 0.792)
     }
     
     var fgColour: Color {
-        return selected ? Color.orange : Color.white
+        return selected ? Color(red: 0, green: 0.573, blue: 0.792) : Color.white
     }
     
     let function: (String) -> Void
@@ -99,7 +99,7 @@ struct NumberButtonView: View {
     }
     
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: scale, action: action)
+        ButtonView(text: text, backgroundColour: Color(red: 0.2235294117647059, green: 0.24313725490196078, blue: 0.27450980392156865), scale: scale, action: action)
     }
 }
 
@@ -110,6 +110,6 @@ struct SpecialButtonView: View {
     let function: () -> Void
     
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black, action: function)
+        ButtonView(text: text, backgroundColour: Color(red: 0.933, green: 0.933, blue: 0.933), foregroundColour: Color.black, action: function)
     }
 }

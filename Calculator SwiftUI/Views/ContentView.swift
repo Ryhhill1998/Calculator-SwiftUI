@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color(red: 0.133, green: 0.157, blue: 0.192).ignoresSafeArea()
             
             VStack(spacing: 30.0) {
                 Spacer()
@@ -25,7 +25,8 @@ struct ContentView: View {
                     Spacer()
                     
                     Text(calculatorModel.currentValue)
-                        .font(.system(size: 80))
+                        .font(.system(size: 100))
+                        .fontWeight(.light)
                         .foregroundColor(.white)
                         .lineLimit(1)
                 }
@@ -34,7 +35,7 @@ struct ContentView: View {
                 // buttons
                 VStack(spacing: 12.0) {
                     HStack(spacing: 12.0) {
-                        SpecialButtonView(text: "AC", function: clearButtonPressed)
+                        SpecialButtonView(text: "C", function: clearButtonPressed)
                         SpecialButtonView(text: "+/-", function: changeSignButtonPressed)
                         SpecialButtonView(text: "%", function: clearButtonPressed)
                         OperationButtonView(text: "/", selected: selectedOperationButton == "/", function: operationButtonPressed)
