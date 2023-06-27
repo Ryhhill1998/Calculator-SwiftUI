@@ -31,19 +31,27 @@ class CalculatorModel: ObservableObject {
     func operationClicked(operation: String) {
         switch operation {
         case "/":
-            processInput()
+            if lastButtonClicked != "operation" {
+                processInput()
+            }
             
             chosenOperation = divide
         case "x":
-            processInput()
+            if lastButtonClicked != "operation" {
+                processInput()
+            }
             
             chosenOperation = multiply
         case "-":
-            processInput()
+            if lastButtonClicked != "operation" {
+                processInput()
+            }
             
             chosenOperation = subtract
         case "+":
-            processInput()
+            if lastButtonClicked != "operation" {
+                processInput()
+            }
             
             chosenOperation = add
         case "=":
