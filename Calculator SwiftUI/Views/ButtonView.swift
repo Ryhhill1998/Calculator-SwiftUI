@@ -13,24 +13,26 @@ struct ButtonView: View {
     let backgroundColour: Color
     let foregroundColour: Color
     let scale: CGFloat
+    let action: () -> Void
     
-    init(text: String, backgroundColour: Color, foregroundColour: Color, scale: CGFloat) {
+    init(text: String, backgroundColour: Color, foregroundColour: Color, scale: CGFloat, action: @escaping () -> Void) {
         self.text = text
         self.backgroundColour = backgroundColour
         self.foregroundColour = foregroundColour
         self.scale = scale
+        self.action = action
     }
     
-    init(text: String, backgroundColour: Color, foregroundColour: Color) {
-        self.init(text: text, backgroundColour: backgroundColour, foregroundColour: foregroundColour, scale: 1.0)
+    init(text: String, backgroundColour: Color, foregroundColour: Color, action: @escaping () -> Void) {
+        self.init(text: text, backgroundColour: backgroundColour, foregroundColour: foregroundColour, scale: 1.0, action: action)
     }
     
-    init(text: String, backgroundColour: Color, scale: CGFloat) {
-        self.init(text: text, backgroundColour: backgroundColour, foregroundColour: Color.white, scale: scale)
+    init(text: String, backgroundColour: Color, scale: CGFloat, action: @escaping () -> Void) {
+        self.init(text: text, backgroundColour: backgroundColour, foregroundColour: Color.white, scale: scale, action: action)
     }
 
-    init(text: String, backgroundColour: Color) {
-        self.init(text: text, backgroundColour: backgroundColour, foregroundColour: Color.white)
+    init(text: String, backgroundColour: Color, action: @escaping () -> Void) {
+        self.init(text: text, backgroundColour: backgroundColour, foregroundColour: Color.white, action: action)
     }
     
     var scaledWidth: CGFloat {
@@ -39,11 +41,12 @@ struct ButtonView: View {
     
     var body: some View {
         Button {
-            print("Button clicked")
+            action()
         } label: {
             Text(text)
         }
         .font(.system(size: 30))
+        .fontWeight(.semibold)
         .frame(width: scaledWidth, height: buttonWidth)
         .background(backgroundColour)
         .foregroundColor(foregroundColour)
@@ -55,8 +58,12 @@ struct OperationButtonView: View {
     
     let text: String
     
+    func action() {
+        print("Operation button clicked")
+    }
+    
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color.orange)
+        ButtonView(text: text, backgroundColour: Color.orange, action: action)
     }
 }
 
@@ -74,8 +81,12 @@ struct NumberButtonView: View {
         self.init(text: text, scale: 1.0)
     }
     
+    func action() {
+        print("Number button clicked")
+    }
+    
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: scale)
+        ButtonView(text: text, backgroundColour: Color(hue: 1.0, saturation: 0.003, brightness: 0.256), scale: scale, action: action)
     }
 }
 
@@ -83,7 +94,11 @@ struct SpecialButtonView: View {
     
     let text: String
     
+    func action() {
+        print("Special button clicked")
+    }
+    
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black)
+        ButtonView(text: text, backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black, action: action)
     }
 }
