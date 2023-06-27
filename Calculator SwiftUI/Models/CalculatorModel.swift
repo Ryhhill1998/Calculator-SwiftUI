@@ -15,10 +15,8 @@ class CalculatorModel: ObservableObject {
     var lastButtonClicked: String?
     
     func numberClicked(number: String) {
-        if lastButtonClicked == "number" && currentValue != "0" {
+        if number == "." || lastButtonClicked == "number" && currentValue != "0" {
             currentValue = currentValue + number
-        } else if number == "." {
-            currentValue = "0."
         } else {
             if result != nil {
                 storedValue = result
@@ -49,25 +47,26 @@ class CalculatorModel: ObservableObject {
             
             chosenOperation = add
         case "=":
-            if let op = chosenOperation {
-                performOperation(number1: getDoubleFromString(string: storedValue), number2: getDoubleFromString(string: currentValue), operation: op)
-            }
+            performOperation()
+            
+            lastButtonClicked = "equals"
         default:
             print("invalid operation")
         }
-        
-        lastButtonClicked = "operation"
     }
     
     func processInput() {
         if lastButtonClicked == "operation" { return }
         
         if storedValue != nil {
-            operationClicked(operation: "=")
+            performOperation()
+            storedValue = currentValue
         } else {
             storedValue = currentValue
             currentValue = "0"
         }
+        
+        lastButtonClicked = "operation"
     }
     
     func getDoubleFromString(string: String?) -> Double {
@@ -75,10 +74,12 @@ class CalculatorModel: ObservableObject {
     }
     
     func divide(number1: Double, by number2: Double) -> Double {
+        print("\(number1) / \(number2) = \(number1 / number2)")
         return number1 / number2
     }
     
     func multiply(number1: Double, by number2: Double) -> Double {
+        print("\(number1) x \(number2) = \(number1 * number2)")
         return number1 * number2
     }
     
@@ -92,10 +93,18 @@ class CalculatorModel: ObservableObject {
         return number1 + number2
     }
     
-    func performOperation(number1: Double, number2: Double, operation: (Double, Double) -> Double) {
-        result = "\(operation(number1, number2))"
-        storedValue = nil
-        currentValue = result!
+    func performOperation() {
+        if let op = chosenOperation {
+            let num1 = getDoubleFromString(string: storedValue)
+            let num2 = getDoubleFromString(string: currentValue)
+            result = "\(op(num1, num2))"
+            
+            if lastButtonClicked != "equals" {
+                storedValue = currentValue
+            }
+            
+            currentValue = result!
+        }
     }
     
     func resetData() {
