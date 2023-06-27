@@ -12,6 +12,7 @@
 		5B2AD8DA2A4A0E810032C4FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AD8D92A4A0E810032C4FD /* Assets.xcassets */; };
 		5B2AD8DD2A4A0E810032C4FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AD8DC2A4A0E810032C4FD /* Preview Assets.xcassets */; };
 		5B2AD8E52A4B09680032C4FD /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AD8E42A4B09680032C4FD /* ButtonView.swift */; };
+		5B2AD8E82A4B18190032C4FD /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AD8E72A4B18190032C4FD /* CalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		5B2AD8D92A4A0E810032C4FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B2AD8DC2A4A0E810032C4FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B2AD8E42A4B09680032C4FD /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		5B2AD8E72A4B18190032C4FD /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		5B2AD8D42A4A0E800032C4FD /* Calculator SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				5B2AD8E62A4B18050032C4FD /* Models */,
 				5B2AD8D52A4A0E800032C4FD /* Calculator_SwiftUIApp.swift */,
 				5B2AD8E32A4B09590032C4FD /* Views */,
 				5B2AD8D92A4A0E810032C4FD /* Assets.xcassets */,
@@ -76,6 +79,14 @@
 				5B2AD8E42A4B09680032C4FD /* ButtonView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5B2AD8E62A4B18050032C4FD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B2AD8E72A4B18190032C4FD /* CalculatorModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 				5B2AD8D82A4A0E800032C4FD /* ContentView.swift in Sources */,
 				5B2AD8D62A4A0E800032C4FD /* Calculator_SwiftUIApp.swift in Sources */,
 				5B2AD8E52A4B09680032C4FD /* ButtonView.swift in Sources */,
+				5B2AD8E82A4B18190032C4FD /* CalculatorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

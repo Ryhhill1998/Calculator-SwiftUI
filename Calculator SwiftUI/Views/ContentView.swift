@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var calculatorModel = CalculatorModel()
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -19,10 +22,11 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     
-                    Text("0")
+                    Text(calculatorModel.currentValue)
                         .font(.system(size: 80))
                         .foregroundColor(.white)
-                }.padding(.horizontal, 30.0)
+                }
+                .padding(.horizontal, 30.0)
                 
                 // buttons
                 VStack(spacing: 12.0) {
@@ -30,39 +34,47 @@ struct ContentView: View {
                         SpecialButtonView(text: "AC")
                         SpecialButtonView(text: "+/-")
                         SpecialButtonView(text: "%")
-                        OperationButtonView(text: "/")
+                        OperationButtonView(text: "/", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
-                        NumberButtonView(text: "7")
-                        NumberButtonView(text: "8")
-                        NumberButtonView(text: "9")
-                        OperationButtonView(text: "x")
+                        NumberButtonView(text: "7", function: numberButtonPressed)
+                        NumberButtonView(text: "8", function: numberButtonPressed)
+                        NumberButtonView(text: "9", function: numberButtonPressed)
+                        OperationButtonView(text: "x", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
-                        NumberButtonView(text: "4")
-                        NumberButtonView(text: "5")
-                        NumberButtonView(text: "6")
-                        OperationButtonView(text: "-")
+                        NumberButtonView(text: "4", function: numberButtonPressed)
+                        NumberButtonView(text: "5", function: numberButtonPressed)
+                        NumberButtonView(text: "6", function: numberButtonPressed)
+                        OperationButtonView(text: "-", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
-                        NumberButtonView(text: "1")
-                        NumberButtonView(text: "2")
-                        NumberButtonView(text: "3")
-                        OperationButtonView(text: "+")
+                        NumberButtonView(text: "1", function: numberButtonPressed)
+                        NumberButtonView(text: "2", function: numberButtonPressed)
+                        NumberButtonView(text: "3", function: numberButtonPressed)
+                        OperationButtonView(text: "+", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
-                        NumberButtonView(text: "0", scale: 2.0)
-                        NumberButtonView(text: ".")
-                        OperationButtonView(text: "=")
+                        NumberButtonView(text: "0", scale: 2.0, function: numberButtonPressed)
+                        NumberButtonView(text: ".", function: numberButtonPressed)
+                        OperationButtonView(text: "=", function: operationButtonPressed)
                     }
                 }
             }
             .padding(.vertical, 12.0)
         }
+    }
+    
+    func operationButtonPressed(text: String) {
+        calculatorModel.operationClicked(operation: text)
+    }
+    
+    func numberButtonPressed(text: String) {
+        calculatorModel.numberClicked(number: text)
     }
 }
 

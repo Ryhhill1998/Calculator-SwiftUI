@@ -44,12 +44,12 @@ struct ButtonView: View {
             action()
         } label: {
             Text(text)
+                .frame(width: scaledWidth, height: buttonWidth)
+                .font(.system(size: 30))
+                .fontWeight(.semibold)
+                .background(backgroundColour)
+                .foregroundColor(foregroundColour)
         }
-        .font(.system(size: 30))
-        .fontWeight(.semibold)
-        .frame(width: scaledWidth, height: buttonWidth)
-        .background(backgroundColour)
-        .foregroundColor(foregroundColour)
         .cornerRadius(buttonWidth / 2)
     }
 }
@@ -57,9 +57,10 @@ struct ButtonView: View {
 struct OperationButtonView: View {
     
     let text: String
+    let function: (String) -> Void
     
     func action() {
-        print("Operation button clicked")
+        function(text)
     }
     
     var body: some View {
@@ -71,18 +72,20 @@ struct NumberButtonView: View {
     
     let text: String
     let scale: CGFloat
+    let function: (String) -> Void
     
-    init(text: String, scale: CGFloat) {
+    init(text: String, scale: CGFloat, function: @escaping (String) -> Void) {
         self.text = text
         self.scale = scale
+        self.function = function
     }
     
-    init(text: String) {
-        self.init(text: text, scale: 1.0)
+    init(text: String, function: @escaping (String) -> Void) {
+        self.init(text: text, scale: 1.0, function: function)
     }
     
     func action() {
-        print("Number button clicked")
+        function(text)
     }
     
     var body: some View {
