@@ -22,7 +22,12 @@ class CalculatorModel: ObservableObject {
                 storedValue = result
                 result = nil
             }
+            
             currentValue = number
+            
+            if lastButtonClicked == "equals" {
+                storedValue = nil
+            }
         }
         
         lastButtonClicked = "number"
