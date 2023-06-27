@@ -96,11 +96,12 @@ class CalculatorModel: ObservableObject {
     }
     
     func subtract(number1: Double, number2: Double) -> Double {
-        print("number1: \(number1), number2: \(number2)")
+        print("\(number1) - \(number2) = \(number1 - number2)")
         return number1 - number2
     }
     
     func add(number1: Double, number2: Double) -> Double {
+        print("\(number1) + \(number2) = \(number1 + number2)")
         return number1 + number2
     }
     
@@ -115,5 +116,13 @@ class CalculatorModel: ObservableObject {
         currentValue = "0"
         chosenOperation = nil
         lastButtonClicked = nil
+    }
+    
+    func changeCurrentValueSign() {
+        if currentValue.starts(with: "-") {
+            currentValue = currentValue.replacingOccurrences(of: "-", with: "")
+        } else {
+            currentValue = "-\(currentValue)"
+        }
     }
 }
