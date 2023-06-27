@@ -27,6 +27,7 @@ struct ContentView: View {
                     Text(calculatorModel.currentValue)
                         .font(.system(size: 80))
                         .foregroundColor(.white)
+                        .lineLimit(1)
                 }
                 .padding(.horizontal, 30.0)
                 

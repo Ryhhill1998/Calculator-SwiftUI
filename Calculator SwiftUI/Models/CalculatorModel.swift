@@ -17,6 +17,8 @@ class CalculatorModel: ObservableObject {
     func numberClicked(number: String) {
         if lastButtonClicked == "number" && currentValue != "0" {
             currentValue = currentValue + number
+        } else if number == "." {
+            currentValue = "0."
         } else {
             if result != nil {
                 storedValue = result
@@ -31,27 +33,19 @@ class CalculatorModel: ObservableObject {
     func operationClicked(operation: String) {
         switch operation {
         case "/":
-            if lastButtonClicked != "operation" {
-                processInput()
-            }
+            processInput()
             
             chosenOperation = divide
         case "x":
-            if lastButtonClicked != "operation" {
-                processInput()
-            }
+            processInput()
             
             chosenOperation = multiply
         case "-":
-            if lastButtonClicked != "operation" {
-                processInput()
-            }
+            processInput()
             
             chosenOperation = subtract
         case "+":
-            if lastButtonClicked != "operation" {
-                processInput()
-            }
+            processInput()
             
             chosenOperation = add
         case "=":
@@ -66,6 +60,8 @@ class CalculatorModel: ObservableObject {
     }
     
     func processInput() {
+        if lastButtonClicked == "operation" { return }
+        
         if storedValue != nil {
             operationClicked(operation: "=")
         } else {
