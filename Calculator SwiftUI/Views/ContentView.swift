@@ -31,9 +31,9 @@ struct ContentView: View {
                 // buttons
                 VStack(spacing: 12.0) {
                     HStack(spacing: 12.0) {
-                        SpecialButtonView(text: "AC")
-                        SpecialButtonView(text: "+/-")
-                        SpecialButtonView(text: "%")
+                        SpecialButtonView(text: "AC", function: clearButtonPressed)
+                        SpecialButtonView(text: "+/-", function: clearButtonPressed)
+                        SpecialButtonView(text: "%", function: clearButtonPressed)
                         OperationButtonView(text: "/", function: operationButtonPressed)
                     }
                     
@@ -75,6 +75,10 @@ struct ContentView: View {
     
     func numberButtonPressed(text: String) {
         calculatorModel.numberClicked(number: text)
+    }
+    
+    func clearButtonPressed() {
+        calculatorModel.resetData()
     }
 }
 

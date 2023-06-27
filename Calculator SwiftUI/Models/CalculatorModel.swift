@@ -10,63 +10,62 @@ import Foundation
 class CalculatorModel: ObservableObject {
     var storedValue: String?
     @Published var currentValue: String = "0"
-    var chosenOperation: String?
+    var chosenOperation: ((Double, Double) -> Double)?
     var lastButtonClicked: String?
     
     func numberClicked(number: String) {
         if lastButtonClicked == "number" && currentValue != "0" {
             currentValue = currentValue + number
         } else {
+            if lastButtonClicked == "equals" {
+                storedValue = currentValue
+            }
             currentValue = number
         }
-        
-        print(currentValue)
         
         lastButtonClicked = "number"
     }
     
     func operationClicked(operation: String) {
+        lastButtonClicked = "operation"
+        
         switch operation {
         case "/":
             print("divide clicked")
-            chosenOperation = operation
+            chosenOperation = divide
             
-            if let savedValue = storedValue {
-                let result = divide(number1: getDoubleFromString(string: savedValue), by: getDoubleFromString(string: currentValue))
-                print(result)
+            if storedValue != nil {
+                operationClicked(operation: "=")
             } else {
                 storedValue = currentValue
                 currentValue = "0"
             }
         case "x":
             print("multiply clicked")
-            chosenOperation = operation
+            chosenOperation = multiply
             
-            if let savedValue = storedValue {
-                let result = multiply(number1: getDoubleFromString(string: savedValue), by: getDoubleFromString(string: currentValue))
-                print(result)
+            if storedValue != nil {
+                operationClicked(operation: "=")
             } else {
                 storedValue = currentValue
                 currentValue = "0"
             }
         case "-":
-            print("substract clicked")
-            chosenOperation = operation
+            print("subtract clicked")
+            chosenOperation = subtract
             
-            if let savedValue = storedValue {
-                let result = subtract(number1: getDoubleFromString(string: savedValue), number2: getDoubleFromString(string: currentValue))
-                print(result)
+            if storedValue != nil {
+                operationClicked(operation: "=")
             } else {
                 storedValue = currentValue
                 currentValue = "0"
             }
         case "+":
             print("add clicked")
-            chosenOperation = operation
+            chosenOperation = add
             
-            if let savedValue = storedValue {
-                let result = add(number1: getDoubleFromString(string: savedValue), number2: getDoubleFromString(string: currentValue))
-                print(result)
+            if storedValue != nil {
+                operationClicked(operation: "=")
             } else {
                 storedValue = currentValue
                 currentValue = "0"
@@ -74,21 +73,18 @@ class CalculatorModel: ObservableObject {
         case "=":
             print("equals clicked")
             
-            if let savedValue = storedValue {
-                let result = divide(number1: getDoubleFromString(string: savedValue), by: getDoubleFromString(string: currentValue))
-                print(result)
-            } else {
-                print(currentValue)
+            if let op = chosenOperation {
+                performOperation(number1: getDoubleFromString(string: storedValue), number2: getDoubleFromString(string: currentValue), operation: op)
             }
+            
+            lastButtonClicked = "equals"
         default:
             print("invalid operation")
         }
-        
-        lastButtonClicked = "operation"
     }
     
-    func getDoubleFromString(string: String) -> Double {
-        return Double(string) ?? 0
+    func getDoubleFromString(string: String?) -> Double {
+        return Double(string ?? "0") ?? 0
     }
     
     func divide(number1: Double, by number2: Double) -> Double {
@@ -100,10 +96,24 @@ class CalculatorModel: ObservableObject {
     }
     
     func subtract(number1: Double, number2: Double) -> Double {
+        print("number1: \(number1), number2: \(number2)")
         return number1 - number2
     }
     
     func add(number1: Double, number2: Double) -> Double {
         return number1 + number2
+    }
+    
+    func performOperation(number1: Double, number2: Double, operation: (Double, Double) -> Double) {
+        let result = operation(number1, number2)
+        storedValue = nil
+        currentValue = "\(result)"
+    }
+    
+    func resetData() {
+        storedValue = nil
+        currentValue = "0"
+        chosenOperation = nil
+        lastButtonClicked = nil
     }
 }

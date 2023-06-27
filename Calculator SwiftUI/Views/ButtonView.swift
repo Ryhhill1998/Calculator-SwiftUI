@@ -97,11 +97,9 @@ struct SpecialButtonView: View {
     
     let text: String
     
-    func action() {
-        print("Special button clicked")
-    }
+    let function: () -> Void
     
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black, action: action)
+        ButtonView(text: text, backgroundColour: Color(hue: 0.0, saturation: 0.011, brightness: 0.732), foregroundColour: Color.black, action: function)
     }
 }
