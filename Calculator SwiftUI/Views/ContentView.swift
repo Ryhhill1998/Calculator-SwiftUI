@@ -25,7 +25,9 @@ struct ContentView: View {
                     Spacer()
                     
                     Text(calculatorModel.currentValue)
-                        .font(.system(size: 100))
+                        .font(.system(size: 80))
+                        .allowsTightening(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        .minimumScaleFactor(0.8)
                         .fontWeight(.light)
                         .foregroundColor(.white)
                         .lineLimit(1)

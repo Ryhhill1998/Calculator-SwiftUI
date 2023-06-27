@@ -15,7 +15,17 @@ class CalculatorModel: ObservableObject {
     var lastButtonClicked: String?
     
     func numberClicked(number: String) {
-        if number == "." || lastButtonClicked == "number" && currentValue != "0" {
+        if currentValue == "Error" {
+            storedValue = nil
+            result = nil
+            chosenOperation = nil
+            
+            if number == "." {
+                currentValue = "0."
+            } else {
+                currentValue = number
+            }
+        } else if currentValue != "Error" && (number == "." || lastButtonClicked == "number" && currentValue != "0") {
             currentValue = currentValue + number
         } else {
             if result != nil {
@@ -120,15 +130,19 @@ class CalculatorModel: ObservableObject {
     func formatResult() {
         guard let unwrappedResult = result else { return }
         
-        let splitNumber = unwrappedResult.split(separator: ".")
-        
-        if splitNumber.count != 2 { return }
-        
-        guard let decimal = splitNumber.last else { return }
-        
-        if decimal == "0" {
-            let formattedResult = "\(Int(splitNumber[0])!)"
-            result = formattedResult
+        if unwrappedResult == "nan" || unwrappedResult == "inf" {
+            result = "Error"
+        } else {
+            let splitNumber = unwrappedResult.split(separator: ".")
+            
+            if splitNumber.count != 2 { return }
+            
+            guard let decimal = splitNumber.last else { return }
+            
+            if decimal == "0" {
+                let formattedResult = "\(Int(splitNumber[0])!)"
+                result = formattedResult
+            }
         }
     }
     
