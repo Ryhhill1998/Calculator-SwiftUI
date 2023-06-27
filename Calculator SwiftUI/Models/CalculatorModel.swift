@@ -104,11 +104,29 @@ class CalculatorModel: ObservableObject {
             let num2 = getDoubleFromString(string: currentValue)
             result = "\(op(num1, num2))"
             
+            formatResult()
+            
             if lastButtonClicked != "equals" {
                 storedValue = currentValue
             }
             
             currentValue = result!
+        }
+    }
+    
+    func formatResult() {
+        guard let unwrappedResult = result else { return }
+        
+        let splitNumber = unwrappedResult.split(separator: ".")
+        
+        if splitNumber.count != 2 { return }
+        
+        guard let decimal = splitNumber.last else { return }
+        
+        if decimal == "0" {
+            let formattedResult = "\(Int(result!)!)"
+            result = formattedResult
+            currentValue = formattedResult
         }
     }
     
