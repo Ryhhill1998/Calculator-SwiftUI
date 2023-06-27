@@ -57,6 +57,16 @@ struct ButtonView: View {
 struct OperationButtonView: View {
     
     let text: String
+    let selected: Bool
+    
+    var bgColour: Color {
+        return selected ? Color.white : Color.orange
+    }
+    
+    var fgColour: Color {
+        return selected ? Color.orange : Color.white
+    }
+    
     let function: (String) -> Void
     
     func action() {
@@ -64,7 +74,7 @@ struct OperationButtonView: View {
     }
     
     var body: some View {
-        ButtonView(text: text, backgroundColour: Color.orange, action: action)
+        ButtonView(text: text, backgroundColour: bgColour, foregroundColour: fgColour, action: action)
     }
 }
 

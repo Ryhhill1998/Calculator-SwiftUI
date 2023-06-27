@@ -31,52 +31,22 @@ class CalculatorModel: ObservableObject {
     func operationClicked(operation: String) {
         switch operation {
         case "/":
-            print("divide clicked")
-            
-            if storedValue != nil {
-                operationClicked(operation: "=")
-            } else {
-                storedValue = currentValue
-                currentValue = "0"
-            }
+            processInput()
             
             chosenOperation = divide
         case "x":
-            print("multiply clicked")
-            
-            if storedValue != nil {
-                operationClicked(operation: "=")
-            } else {
-                storedValue = currentValue
-                currentValue = "0"
-            }
+            processInput()
             
             chosenOperation = multiply
         case "-":
-            print("subtract clicked")
-            
-            if storedValue != nil {
-                operationClicked(operation: "=")
-            } else {
-                storedValue = currentValue
-                currentValue = "0"
-            }
+            processInput()
             
             chosenOperation = subtract
         case "+":
-            print("add clicked")
-            
-            if storedValue != nil {
-                operationClicked(operation: "=")
-            } else {
-                storedValue = currentValue
-                currentValue = "0"
-            }
+            processInput()
             
             chosenOperation = add
         case "=":
-            print("equals clicked")
-            
             if let op = chosenOperation {
                 performOperation(number1: getDoubleFromString(string: storedValue), number2: getDoubleFromString(string: currentValue), operation: op)
             }
@@ -85,6 +55,15 @@ class CalculatorModel: ObservableObject {
         }
         
         lastButtonClicked = "operation"
+    }
+    
+    func processInput() {
+        if storedValue != nil {
+            operationClicked(operation: "=")
+        } else {
+            storedValue = currentValue
+            currentValue = "0"
+        }
     }
     
     func getDoubleFromString(string: String?) -> Double {

@@ -11,6 +11,8 @@ struct ContentView: View {
     
     @ObservedObject var calculatorModel = CalculatorModel()
     
+    @State var selectedOperationButton: String?
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -34,34 +36,34 @@ struct ContentView: View {
                         SpecialButtonView(text: "AC", function: clearButtonPressed)
                         SpecialButtonView(text: "+/-", function: changeSignButtonPressed)
                         SpecialButtonView(text: "%", function: clearButtonPressed)
-                        OperationButtonView(text: "/", function: operationButtonPressed)
+                        OperationButtonView(text: "/", selected: selectedOperationButton == "/", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
                         NumberButtonView(text: "7", function: numberButtonPressed)
                         NumberButtonView(text: "8", function: numberButtonPressed)
                         NumberButtonView(text: "9", function: numberButtonPressed)
-                        OperationButtonView(text: "x", function: operationButtonPressed)
+                        OperationButtonView(text: "x", selected: selectedOperationButton == "x", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
                         NumberButtonView(text: "4", function: numberButtonPressed)
                         NumberButtonView(text: "5", function: numberButtonPressed)
                         NumberButtonView(text: "6", function: numberButtonPressed)
-                        OperationButtonView(text: "-", function: operationButtonPressed)
+                        OperationButtonView(text: "-", selected: selectedOperationButton == "-", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
                         NumberButtonView(text: "1", function: numberButtonPressed)
                         NumberButtonView(text: "2", function: numberButtonPressed)
                         NumberButtonView(text: "3", function: numberButtonPressed)
-                        OperationButtonView(text: "+", function: operationButtonPressed)
+                        OperationButtonView(text: "+", selected: selectedOperationButton == "+", function: operationButtonPressed)
                     }
                     
                     HStack(spacing: 12.0) {
                         NumberButtonView(text: "0", scale: 2.0, function: numberButtonPressed)
                         NumberButtonView(text: ".", function: numberButtonPressed)
-                        OperationButtonView(text: "=", function: operationButtonPressed)
+                        OperationButtonView(text: "=", selected: false, function: operationButtonPressed)
                     }
                 }
             }
@@ -71,18 +73,22 @@ struct ContentView: View {
     
     func operationButtonPressed(text: String) {
         calculatorModel.operationClicked(operation: text)
+        selectedOperationButton = text
     }
     
     func numberButtonPressed(text: String) {
         calculatorModel.numberClicked(number: text)
+        selectedOperationButton = nil
     }
     
     func clearButtonPressed() {
         calculatorModel.resetData()
+        selectedOperationButton = nil
     }
     
     func changeSignButtonPressed() {
         calculatorModel.changeCurrentValueSign()
+        selectedOperationButton = nil
     }
 }
 
