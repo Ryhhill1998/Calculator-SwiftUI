@@ -70,10 +70,8 @@ class CalculatorModel: ObservableObject {
         
         if storedValue != nil {
             performOperation()
-            storedValue = currentValue
         } else {
             storedValue = currentValue
-            currentValue = "0"
         }
         
         lastButtonClicked = "operation"
