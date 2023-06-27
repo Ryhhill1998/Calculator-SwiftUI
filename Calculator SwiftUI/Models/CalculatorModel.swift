@@ -63,6 +63,11 @@ class CalculatorModel: ObservableObject {
     func processInput() {
         if lastButtonClicked == "operation" { return }
         
+        if lastButtonClicked == "equals" {
+            storedValue = nil
+            result = nil
+        }
+        
         if storedValue != nil {
             performOperation()
             storedValue = currentValue
@@ -124,9 +129,8 @@ class CalculatorModel: ObservableObject {
         guard let decimal = splitNumber.last else { return }
         
         if decimal == "0" {
-            let formattedResult = "\(Int(result!)!)"
+            let formattedResult = "\(Int(splitNumber[0])!)"
             result = formattedResult
-            currentValue = formattedResult
         }
     }
     
